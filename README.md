@@ -1,1 +1,1 @@
-# Y86Compiler
+# Y86 Simulator
