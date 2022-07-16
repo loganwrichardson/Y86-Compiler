@@ -1,0 +1,192 @@
+.pos 0
+#Put your code here. You'll need some 
+#initialization code and then five chunks
+#of code that are basically identical.
+
+#Register list
+#rsp - Hold the address of the beginning of the value list
+#Reg 14 - Holds the value from memory
+#Reg 13 - Holds Zero
+#Reg 10 - Working register
+
+irmovq list, %rsp #Store memory value in rsp
+nop #Nop Stall
+nop
+nop
+xorq %r13, %r13 #Holds Zero
+xorq %rax, %rax #Clears out the rax register
+xorq %r10, %r10 #Make sure zero is in your reg
+xorq %rcx, %rcx
+xorq %rdx, %rdx
+xorq %rbx, %rbx
+xorq %rbp, %rbp
+xorq %r9, %r9
+xorq %rax, %rax
+
+mrmovq 0(%rsp), %r14 #Store the value in reg 14
+nop
+nop
+nop
+rrmovq %r14, %r10 #Moving value to working reg
+nop
+nop
+nop
+addq %r13, %r10 #Adding zero to value to set condition flags
+nop
+nop
+nop
+cmovl %r10, %r9 #Move the value in r10 to r9 if negative
+nop
+nop
+nop
+subq %r9, %rax #Take the absolute value by subtracting a negative number
+nop
+nop
+nop
+cmovg %rax, %r10 #Move the value back to r10 if it's positive
+nop
+nop
+nop
+rmmovq %r10, 0(%rsp) #Put the absolute value back in the list
+nop
+nop
+nop
+
+mrmovq 8(%rsp), %r14 #Store the value in reg 14
+xorq %r9, %r9
+xorq %rax, %rax
+nop
+nop
+nop
+rrmovq %r14, %rcx #Moving value to working reg
+nop
+nop
+nop
+addq %r13, %rcx #Adding zero to value to set condition flags
+nop
+nop
+nop
+cmovl %rcx, %r9 #Move the value in r10 to r9 if negative
+nop
+nop
+nop
+subq %r9, %rax #Take the absolute value by subtracting a negative number
+nop
+nop
+nop
+#cmovge %rax, %r10 #Move the value back to r10 if it's positive
+cmovg %rax, %rcx
+nop
+nop
+nop
+rmmovq %rcx, 8(%rsp) #Put the absolute value back in the list
+nop
+nop
+nop
+
+mrmovq 16(%rsp), %r14 #Store the value in reg 14
+xorq %r9, %r9
+xorq %rax, %rax
+nop
+nop
+nop
+rrmovq %r14, %rdx #Moving value to working reg
+nop
+nop
+nop
+addq %r13, %rdx #Adding zero to value to set condition flags
+nop
+nop
+nop
+cmovl %rdx, %r9 #Move the value in r10 to r9 if negative
+nop
+nop
+nop
+subq %r9, %rax #Take the absolute value by subtracting a negative number
+nop
+nop
+nop
+#cmovge %rax, %r10 #Move the value back to r10 if it's positive
+cmovg %rax, %rdx
+nop
+nop
+nop
+rmmovq %rdx, 16(%rsp) #Put the absolute value back in the list
+nop
+nop
+nop
+
+mrmovq 24(%rsp), %r14 #Store the value in reg 14
+xorq %r9, %r9
+xorq %rax, %rax
+nop
+nop
+nop
+rrmovq %r14, %rbx #Moving value to working reg
+nop
+nop
+nop
+addq %r13, %rbx #Adding zero to value to set condition flags
+nop
+nop
+nop
+cmovl %rbx, %r9 #Move the value in r10 to r9 if negative
+nop
+nop
+nop
+subq %r9, %rax #Take the absolute value by subtracting a negative number
+nop
+nop
+nop
+#cmovge %rax, %r10 #Move the value back to r10 if it's positive
+cmovg %rax, %rbx
+nop
+nop
+nop
+rmmovq %rbx, 24(%rsp) #Put the absolute value back in the list
+nop
+nop
+nop
+
+mrmovq 32(%rsp), %r14 #Store the value in reg 14
+xorq %r9, %r9
+xorq %rax, %rax
+nop
+nop
+nop
+rrmovq %r14, %rbp #Moving value to working reg
+nop
+nop
+nop
+addq %r13, %rbp #Adding zero to value to set condition flags
+nop
+nop
+nop
+cmovl %rbp, %r9 #Move the value in r10 to r9 if negative
+nop
+nop
+nop
+subq %r9, %rax #Take the absolute value by subtracting a negative number
+nop
+nop
+nop
+#cmovge %rax, %r10 #Move the value back to r10 if it's positive
+cmovg %rax, %rbp
+nop
+nop
+nop
+rmmovq %rbp, 32(%rsp) #Put the absolute value back in the list
+nop
+nop
+nop
+halt
+nop
+nop
+nop
+
+.align 8
+list: .quad -2            #at end: 2
+.quad 5             #at end: 5 
+.quad -15           #at end: f
+.quad 0             #at end: 0
+.quad -1            #at end: 1
